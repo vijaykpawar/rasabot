@@ -12,7 +12,7 @@ entities:
 - currency
 templates:
   utter_greet:
-  - text: Hey! How Could I assist you /?
+  - text: Hey! How Could I assist you ?
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
     image: https://i.imgur.com/nGF1K8f.jpg
@@ -24,6 +24,8 @@ templates:
   - text: Bye
   utter_ask_currency:
   - text: Please enter base currency
+  utter_remittance_form:
+  - text: F12 form is required for TT
 actions:
 - utter_greet
 - utter_cheer_up
@@ -32,3 +34,4 @@ actions:
 - utter_goodbye
 - get_currency
 - utter_ask_currency
+- utter_remittance_form

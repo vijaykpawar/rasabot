@@ -52,3 +52,7 @@
 * inform{"currency":"USD"}
     - get_currency
     - utter_did_that_help
+
+## form faq
+* remittance_form
+    - utter_remittance_form

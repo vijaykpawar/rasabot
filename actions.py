@@ -23,18 +23,22 @@ class ActionWeather(Action):
             domain: Dict[Text, Any]) :
         ent_list = tracker.latest_message['entities']
         ent = ""
-        if len(ent_list) != 0 :
+        if len(ent_list) != 0:
             ent = ent_list[0]['value']
         base_url = "https://api.exchangeratesapi.io/latest?"
         complete_url = base_url + "&base=USD"
         print("User wants base currency as "+complete_url)
         response = requests.get(complete_url)
         x = response.json()
+        msg = " Source : European Central Bank <br>"
         if x["rates"] != "error":
+            #if x[rates]
             message = x["rates"]
+            for key, value in message.items():
+                msg = msg + str(key) + " " + str(value) + "<br>"
         else:
-            message = "Currency FX rate not found"
+            msg = "Currency FX rate not found"
         print("inside action currency is entity is  ::"+str(ent))
-        dispatcher.utter_message(str(message))
+        dispatcher.utter_message(str(msg))
 
         return []
