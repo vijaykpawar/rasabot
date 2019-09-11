@@ -8,6 +8,9 @@ intents:
 - inform
 - ask
 - remittance_form
+- trends
+- purpose
+- general_insurance
 entities:
 - currency
 templates:
@@ -23,9 +26,14 @@ templates:
   utter_goodbye:
   - text: Bye
   utter_ask_currency:
-  - text: Please enter base currency
+  - text: Please enter quote currency
   utter_remittance_form:
-  - text: F12 form is required for TT
+  - text: Form A2 (Application for Remittance abroad)
+  utter_purpose:
+  - text: What is the purpose of the transaction?
+  utter_general_insurance:
+  - text: Please fill in purpose code S 502
+
 actions:
 - utter_greet
 - utter_cheer_up
@@ -35,3 +43,7 @@ actions:
 - get_currency
 - utter_ask_currency
 - utter_remittance_form
+- get_trends
+- save_trends
+- utter_purpose
+- utter_general_insurance

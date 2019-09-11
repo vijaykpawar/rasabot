@@ -20,18 +20,18 @@
   - utter_cheer_up
   - utter_did_that_help
 * deny
-  - utter_goodbye
+  - utter_greet
 
 ## say goodbye
 * goodbye
   - utter_goodbye
 
-## curency path 1
-* inform{"currency":"USD"}
+## currency path 1
+* inform
  - get_currency
 
-## curency path 2
-* inform{"currency":"INR"}
+## currency path 2
+* inform
  - get_currency
 
 ## New Story 1
@@ -39,7 +39,7 @@
     - utter_greet
 * ask
     - utter_ask_currency
-* inform{"currency":"INR"}
+* inform
     - get_currency
     - utter_did_that_help
 
@@ -49,10 +49,27 @@
     - utter_greet
 * ask
     - utter_ask_currency
-* inform{"currency":"USD"}
+* inform
+    - get_currency
+    - utter_did_that_help
+
+## story 2 for currency
+* ask
+    - utter_ask_currency
+* inform
     - get_currency
     - utter_did_that_help
 
 ## form faq
 * remittance_form
     - utter_remittance_form
+    - save_trends
+## ask trends story
+* trends
+ - get_trends
+
+## get purpose story
+* purpose
+ - utter_purpose
+* general_insurance
+ - utter_general_insurance

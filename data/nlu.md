@@ -30,18 +30,23 @@
 - Hello
 
 ## intent:inform
-- what is FX rate in [USD](currency) today ?
+- what is FX rate in [HKD](currency) today ?
 - what is fx rate in [INR](currency) today ?
-- [USD](currency)
+- [HKD](currency)
 - [INR](currency)
-- base currency is [USD](currency)
-
+- [EUR](currency)
+- [eur](currency)
+- [cad](currency)
+- [CAD](currency)
+- What is the conversion rate for [USD](currency) to [INR] today?
+- base currency is [HKD](currency)
 
 
 ## intent:ask
-- what is base FX rate today ?
+- what is currency FX rate today ?
 - what is fx rate today ?
 - currency
+- get fx rate for today
 - fxrate
 - fx rate
 
@@ -69,7 +74,22 @@
 
 ## intent:remittance_form
 - Which forms are required to be filled up for remittance abroad?
+- Can I get the forms for remittance abroad?
+- How to fill up form for remittance abroad?
 - remittance abroad
 - forms for remittance abroad
 - required for remittance abroad
 - remittance
+
+## intent:trends
+- get form trends
+- Which are the most frequently asked questions for Form 12
+
+## intent:purpose
+- Get me the purpose of transaction
+- Find the purpose of transaction
+
+intent:general_insurance
+- We want to transfer money for General Insurance Premium
+- To transfer money for General Insurance Premium
+- I want to transfer money for General Insurance Premium
