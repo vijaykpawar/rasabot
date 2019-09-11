@@ -64,12 +64,13 @@
 * remittance_form
     - utter_remittance_form
     - save_trends
+
 ## ask trends story
 * trends
- - get_trends
+    - get_trends
 
 ## get purpose story
 * purpose
- - utter_purpose
+    - utter_purpose
 * general_insurance
- - utter_general_insurance
+    - code_action

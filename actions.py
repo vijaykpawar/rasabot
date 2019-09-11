@@ -41,6 +41,7 @@ class ActionWeather(Action):
         else:
             msg = "Currency FX rate not found"
         print("inside action currency is entity is  ::"+str(ent))
+        print(dispatcher)
         dispatcher.utter_message(str(msg))
 
         return []
@@ -77,7 +78,7 @@ class ActionSaveTrends(Action):
         ent = ""
 
         s = tracker.latest_message
-        #print(s)
+        print(s)
 
 
         if len(ent_list) != 0:
@@ -92,5 +93,26 @@ class ActionSaveTrends(Action):
 
 
         #dispatcher.utter_message(str(msg))
+
+        return []
+
+
+
+class ActionSaveTrends(Action):
+    def name(self):
+        return "code_action"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) :
+        ent_list = tracker.latest_message['entities']
+        ent = ""
+
+        if len(ent_list) != 0:
+            ent = ent_list[0]['value']
+        print("Inside code actioon ")
+
+        msg = {"message":"Please fill form S321","typeOfResponse":"purposeCode","valueOfResponse":"s321","canFillForm":"true"}
+        dispatcher.utter_message(str(msg))
 
         return []

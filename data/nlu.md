@@ -89,7 +89,7 @@
 - Get me the purpose of transaction
 - Find the purpose of transaction
 
-intent:general_insurance
+## intent:general_insurance
 - We want to transfer money for General Insurance Premium
 - To transfer money for General Insurance Premium
 - I want to transfer money for General Insurance Premium

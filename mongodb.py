@@ -6,4 +6,5 @@ mycol = mydb["intents"]
 
 mydict = { "name": "John", "address": "Highway 37" }
 
-x = mycol.insert_one(mydict)
+print(mydict)
+#x = mycol.insert_one(mydict)

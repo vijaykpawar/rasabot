@@ -11,28 +11,27 @@ intents:
 - trends
 - purpose
 - general_insurance
+
 entities:
 - currency
 templates:
   utter_greet:
-  - text: Hey! How Could I assist you ?
+  - text: 'Hey! How Could I assist you ?'
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
+    image: 'https://i.imgur.com/nGF1K8f.jpg'
   utter_did_that_help:
-  - text: Did that help you?
+  - text: 'Did that help you?'
   utter_happy:
-  - text: Great carry on!
+  - text: 'Great carry on!'
   utter_goodbye:
-  - text: Bye
+  - text: 'Bye'
   utter_ask_currency:
-  - text: Please enter quote currency
+  - text: 'Please enter quote currency'
   utter_remittance_form:
-  - text: Form A2 (Application for Remittance abroad)
+  - text: '{"message":"Form A2 (Application for Remittance abroad)","typeOfResponse": "A2", "valueOfResponse": "A2" }'
   utter_purpose:
-  - text: What is the purpose of the transaction?
-  utter_general_insurance:
-  - text: Please fill in purpose code S 502
+  - text: 'What is the purpose of the transaction?'
 
 actions:
 - utter_greet
@@ -46,4 +45,4 @@ actions:
 - get_trends
 - save_trends
 - utter_purpose
-- utter_general_insurance
+- code_action
