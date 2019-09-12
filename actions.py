@@ -9,6 +9,7 @@
 import requests, json
 from typing import Any, Text, Dict, List
 
+from docutils.utils.math.latex2mathml import mspace
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
@@ -31,18 +32,20 @@ class ActionWeather(Action):
         response = requests.get(complete_url)
         x = response.json()
         msg = " Source : European Central Bank "
-        if x["rates"] != "error" and ent is not None:
+        fx_rate = ""
+        if x["rates"] != "error" and ent is not None and ent != "":
             #if x[rates]
             message = x["rates"]
             for key, value in message.items():
                 if key == ent.upper():
-                    msg = msg + str(key) + " " + str(value) + ""
+                    fx_rate = str(value)
+                    msg = msg + str(key) + "/USD" + " " + str(value) + ""
 
         else:
             msg = "Currency FX rate not found"
         print("inside action currency is entity is  ::"+str(ent))
-        print(dispatcher)
-        dispatcher.utter_message(str(msg))
+        res = {"message": msg, "fxRateControl": fx_rate, "formCode": "A2"}
+        dispatcher.utter_custom_json(res)
 
         return []
 
@@ -60,8 +63,22 @@ class ActionTrends(Action):
         if len(ent_list) != 0:
             ent = ent_list[0]['value']
 
-        msg="getting  trends from db"
-        dispatcher.utter_message(str(msg))
+        msg = "getting  trends from db"
+        client = pymongo.MongoClient("mongodb://localhost:27017/")
+        tera_db = client["tera"]
+        intents = tera_db["intents"]
+        from bson.son import SON
+        group_query = [{"$group": {"_id": "$name", "count": {"$sum": 1}}}, {"$sort": SON([("count", -1), ("_id", -1)])},
+                       {"$limit": 3}]
+        trends = []
+        group_by_results = intents.aggregate(group_query)
+        for cursor in group_by_results:
+            res = intents.find({"name": cursor.get("_id")}).sort("confidence", -1).limit(1)
+            trends.append(res[0].get("text"))
+
+        msg = {"message": "Top 3 most asked Questions: ", "showTrends": "true",
+               "valueOfResponse": trends};
+        dispatcher.utter_custom_json(msg)
 
         return []
 
@@ -78,8 +95,6 @@ class ActionSaveTrends(Action):
         ent = ""
 
         s = tracker.latest_message
-        print(s)
-
 
         if len(ent_list) != 0:
             ent = ent_list[0]['value']
@@ -88,9 +103,10 @@ class ActionSaveTrends(Action):
         mydb = myclient["tera"]
         mycol = mydb["intents"]
         print(s.get("intent"))
-        x = mycol.insert_one(s.get("intent"))
+        intent = s.get("intent")
+        intent["text"]=s.get("text")
+        x = mycol.insert_one(intent)
         print("saved latest message")
-
 
         #dispatcher.utter_message(str(msg))
 
@@ -107,12 +123,9 @@ class ActionSaveTrends(Action):
             domain: Dict[Text, Any]) :
         ent_list = tracker.latest_message['entities']
         ent = ""
-
         if len(ent_list) != 0:
             ent = ent_list[0]['value']
-        print("Inside code actioon ")
-
-        msg = {"message":"Please fill form S321","typeOfResponse":"purposeCode","valueOfResponse":"s321","canFillForm":"true"}
-        dispatcher.utter_message(str(msg))
-
+        print("Inside code action")
+        msg = {"message":"Please fill purpose code S321","purposeCodeControl":"S321","formCode":"A2"}
+        dispatcher.utter_custom_json(msg)
         return []

@@ -14,8 +14,6 @@
 - not really
 
 ## intent:goodbye
-- bye
-- goodbye
 - see you around
 - see you later
 
@@ -34,8 +32,10 @@
 - what is fx rate in [INR](currency) today ?
 - [HKD](currency)
 - [INR](currency)
+- [inr](currency)
 - [EUR](currency)
 - [eur](currency)
+
 - [cad](currency)
 - [CAD](currency)
 - What is the conversion rate for [USD](currency) to [INR] today?
@@ -46,7 +46,7 @@
 - what is currency FX rate today ?
 - what is fx rate today ?
 - currency
-- get fx rate for today
+- get fx rate for today ?
 - fxrate
 - fx rate
 
@@ -83,7 +83,7 @@
 
 ## intent:trends
 - get form trends
-- Which are the most frequently asked questions for Form 12
+- Which are the most frequently asked questions for Form A2
 
 ## intent:purpose
 - Get me the purpose of transaction

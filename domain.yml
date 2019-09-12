@@ -29,9 +29,11 @@ templates:
   utter_ask_currency:
   - text: 'Please enter quote currency'
   utter_remittance_form:
-  - text: '{"message":"Form A2 (Application for Remittance abroad)","typeOfResponse": "A2", "valueOfResponse": "A2" }'
+  - text: 'Form A2 (Application for Remittance abroad)'
   utter_purpose:
   - text: 'What is the purpose of the transaction?'
+  utter_tera_fallback_action:
+  - text: "Sorry , I am not yet trained for this , please enter valid question"
 
 actions:
 - utter_greet
@@ -46,3 +48,4 @@ actions:
 - save_trends
 - utter_purpose
 - code_action
+- utter_tera_fallback_action
