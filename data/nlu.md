@@ -74,6 +74,7 @@
 
 ## intent:remittance_form
 - Which forms are required to be filled up for remittance abroad?
+- Can you help me with import forms
 - Can I get the forms for remittance abroad?
 - How to fill up form for remittance abroad?
 - remittance abroad
@@ -81,8 +82,10 @@
 - required for remittance abroad
 - remittance
 
+
 ## intent:trends
-- get form trends
+- get me form trends
+- get me more info about forms
 - Which are the most frequently asked questions for Form A2
 
 ## intent:purpose
@@ -93,3 +96,15 @@
 - We want to transfer money for General Insurance Premium
 - To transfer money for General Insurance Premium
 - I want to transfer money for General Insurance Premium
+
+## intent:get_me_form_a2
+- Can you get me A2 form ?
+- get me A2 form
+- Open form A2
+
+## intent:autofill_a2_form
+- Can you auto fill A2 form with previous data?
+- Please auto fill A2 for with historic data
+
+
+

@@ -11,6 +11,8 @@ intents:
 - trends
 - purpose
 - general_insurance
+- get_me_form_a2
+- autofill_a2_form
 
 entities:
 - currency
@@ -29,7 +31,7 @@ templates:
   utter_ask_currency:
   - text: 'Please enter quote currency'
   utter_remittance_form:
-  - text: 'Form A2 (Application for Remittance abroad)'
+  - text: 'You need to fill form A2 (Application for Remittance abroad)'
   utter_purpose:
   - text: 'What is the purpose of the transaction?'
   utter_tera_fallback_action:
@@ -49,3 +51,5 @@ actions:
 - utter_purpose
 - code_action
 - utter_tera_fallback_action
+- send_form_a2
+- send_form_a2_data

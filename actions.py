@@ -31,7 +31,7 @@ class ActionWeather(Action):
         print("User wants base currency as "+complete_url)
         response = requests.get(complete_url)
         x = response.json()
-        msg = " Source : European Central Bank "
+        msg = ""
         fx_rate = ""
         if x["rates"] != "error" and ent is not None and ent != "":
             #if x[rates]
@@ -40,17 +40,18 @@ class ActionWeather(Action):
                 if key == ent.upper():
                     fx_rate = str(value)
                     msg = msg + str(key) + "/USD" + " " + str(value) + ""
+                    msg = msg +"( Source : European Central Bank )"
 
         else:
             msg = "Currency FX rate not found"
         print("inside action currency is entity is  ::"+str(ent))
-        res = {"message": msg, "fxRateControl": fx_rate, "formCode": "A2"}
+        res = {"message": msg, "fxRateControl": fx_rate, "canfill":"true"}
         dispatcher.utter_custom_json(res)
 
         return []
 
 
-class ActionTrends(Action):
+class ActionGetTrends(Action):
 
     def name(self):
         return "get_trends"
@@ -76,7 +77,7 @@ class ActionTrends(Action):
             res = intents.find({"name": cursor.get("_id")}).sort("confidence", -1).limit(1)
             trends.append(res[0].get("text"))
 
-        msg = {"message": "Top 3 most asked Questions: ", "showTrends": "true",
+        msg = {"message": "People also asked : ", "showTrends": "true",
                "valueOfResponse": trends};
         dispatcher.utter_custom_json(msg)
 
@@ -84,6 +85,8 @@ class ActionTrends(Action):
 
 
 import pymongo
+
+
 class ActionSaveTrends(Action):
     def name(self):
         return "save_trends"
@@ -113,8 +116,7 @@ class ActionSaveTrends(Action):
         return []
 
 
-
-class ActionSaveTrends(Action):
+class ActionCodeAction(Action):
     def name(self):
         return "code_action"
 
@@ -126,6 +128,32 @@ class ActionSaveTrends(Action):
         if len(ent_list) != 0:
             ent = ent_list[0]['value']
         print("Inside code action")
-        msg = {"message":"Please fill purpose code S321","purposeCodeControl":"S321","formCode":"A2"}
+        msg = {"message":"Please fill purpose code S0603","purposeCodeControl":"S0603","purposeCodeDesc":"Transfer for general insurance premium including reinsurance premium; and term life insurance premium","canfill":"true"}
+        dispatcher.utter_custom_json(msg)
+        return []
+
+
+class ActionSendA2Form(Action):
+    def name(self):
+        return "send_form_a2"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) :
+        print("Inside get a2 form action")
+        msg = {"message":"Here you go","formCode":"A2"}
+        dispatcher.utter_custom_json(msg)
+        return []
+
+
+class ActionSendA2FormData(Action):
+    def name(self):
+        return "send_form_a2_data"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) :
+        print("Inside get a2 form action get data ")
+        msg = {"message":"Here you go","formCode":"A2"}
         dispatcher.utter_custom_json(msg)
         return []
