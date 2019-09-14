@@ -102,6 +102,10 @@
 - get me A2 form
 - Open form A2
 
+## intent:investment_banking
+- Investment banking – brokerage, under writing commission etc.
+- Investment banking
+
 ## intent:autofill_a2_form
 - Can you auto fill A2 form with previous data?
 - Please auto fill A2 for with historic data

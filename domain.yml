@@ -14,6 +14,7 @@ intents:
 - get_me_form_a2
 - autofill_a2_form
 - draft_save_a2
+- investment_banking
 
 entities:
 - currency
@@ -55,3 +56,4 @@ actions:
 - send_form_a2
 - send_form_a2_data
 - save_form_a2
+- code_investment_banking

@@ -135,6 +135,24 @@ class ActionCodeAction(Action):
         return []
 
 
+class ActionCodeInvestmentBankingAction(Action):
+    def name(self):
+        return "code_investment_banking"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) :
+        ent_list = tracker.latest_message['entities']
+        ent = ""
+        if len(ent_list) != 0:
+            ent = ent_list[0]['value']
+        print("Inside code action")
+        msg = {"message":"Please fill purpose code S0702","purposeCodeControl":"S0702","purposeCodeDesc":"Investment banking – brokerage, under writing commission etc","canfill":"true"}
+        dispatcher.utter_custom_json(msg)
+        return []
+
+
+
 class ActionSendA2Form(Action):
     def name(self):
         return "send_form_a2"
@@ -156,7 +174,13 @@ class ActionSendA2FormData(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) :
         print("Inside get a2 form action get data ")
-        msg = {"message":"Here you go","formCode":"A2"}
+        msg = {"message": "Here you go", "purposeCodeControl": "S0603",
+               "purposeCodeDesc": "Transfer for general insurance premium including reinsurance premium; and term life insurance premium",
+               "fxRateControl": "72.123",
+               "nameControl":"Mr Vikram ",
+               "panControl":"BFBEE56GT1",
+               "canfill": "true"
+               }
         dispatcher.utter_custom_json(msg)
         return []
 
