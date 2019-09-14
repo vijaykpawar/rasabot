@@ -106,5 +106,8 @@
 - Can you auto fill A2 form with previous data?
 - Please auto fill A2 for with historic data
 
+## intent:draft_save_a2
+- Save A2 form draft
+
 
 

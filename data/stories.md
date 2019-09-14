@@ -64,3 +64,8 @@
 * autofill_a2_form
     - save_trends
     - send_form_a2_data
+
+## save draft story
+* draft_save_a2
+    - save_form_a2
+

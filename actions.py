@@ -47,6 +47,8 @@ class ActionWeather(Action):
         print("inside action currency is entity is  ::"+str(ent))
         res = {"message": msg, "fxRateControl": fx_rate, "canfill":"true"}
         dispatcher.utter_custom_json(res)
+        msg = "Also for fx rate refer <a href=\"https://www.gbm.hsbc.com/evolve/overview/\" target=\"_blank\">HSBC evolve</a>"
+        dispatcher.utter_message(msg)
 
         return []
 
@@ -156,4 +158,17 @@ class ActionSendA2FormData(Action):
         print("Inside get a2 form action get data ")
         msg = {"message":"Here you go","formCode":"A2"}
         dispatcher.utter_custom_json(msg)
+        return []
+
+class ActionSaveA2FormData(Action):
+    def name(self):
+        return "save_form_a2"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) :
+        print("Inside get a2 form save  data ")
+        print(str(tracker.__dict__))
+        dispatcher.utter_message("Saved draft successfully")
+        #dispatcher.utter_custom_json(msg)
         return []
