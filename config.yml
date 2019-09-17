@@ -10,6 +10,6 @@ policies:
   - name: KerasPolicy
   - name: MappingPolicy
   - name: "FallbackPolicy"
-    nlu_threshold: 0.35
-    core_threshold: 0.35
-    fallback_action_name: "utter_tera_fallback_action"
+    nlu_threshold: 0.7
+    core_threshold: 0.7
+    fallback_action_name: "fallback_action"

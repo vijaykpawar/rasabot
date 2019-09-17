@@ -1,8 +1,6 @@
 ## happy path
 * greet
   - utter_greet
-* mood_great
-  - utter_happy
 
 ## say goodbye
 * goodbye
@@ -22,7 +20,6 @@
     - utter_greet
 * ask
     - utter_ask_currency
-
 * inform
     - get_currency
     - save_trends
@@ -72,3 +69,11 @@
 ## for investment banking
 * investment_banking
     - code_investment_banking
+
+## for PAN no
+* ask_pan
+    - utter_ask_pan
+
+## for Ad code
+* ask_ad_code
+    - utter_ask_ad_code

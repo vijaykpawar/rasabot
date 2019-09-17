@@ -32,6 +32,7 @@ class ActionWeather(Action):
         response = requests.get(complete_url)
         x = response.json()
         msg = ""
+        res= ""
         fx_rate = ""
         if x["rates"] != "error" and ent is not None and ent != "":
             #if x[rates]
@@ -41,14 +42,16 @@ class ActionWeather(Action):
                     fx_rate = str(value)
                     msg = msg + str(key) + "/USD" + " " + str(value) + ""
                     msg = msg +"( Source : European Central Bank )"
-
+                    res = {"message": msg, "fxRateControl": fx_rate, "canfill": "true"}
         else:
-            msg = "Currency FX rate not found"
+            msg = "Please enter quote currency"
+            res = {"message": msg}
         print("inside action currency is entity is  ::"+str(ent))
-        res = {"message": msg, "fxRateControl": fx_rate, "canfill":"true"}
+
         dispatcher.utter_custom_json(res)
-        msg = "Also for fx rate refer <a href=\"https://www.gbm.hsbc.com/evolve/overview/\" target=\"_blank\">HSBC evolve</a>"
-        dispatcher.utter_message(msg)
+        if ent is not None and ent != "":
+            msg = "Also for fx rate refer <a href=\"https://www.gbm.hsbc.com/evolve/overview/\" target=\"_blank\">HSBC evolve</a>"
+            dispatcher.utter_message(msg)
 
         return []
 
@@ -196,3 +199,76 @@ class ActionSaveA2FormData(Action):
         dispatcher.utter_message("Saved draft successfully")
         #dispatcher.utter_custom_json(msg)
         return []
+
+
+class ActionDefaultAskAffirmation(Action):
+   """Asks for an affirmation of the intent if NLU threshold is not met."""
+
+   def name(self):
+       return "action_default_ask_affirmation"
+
+
+   def run(self, dispatcher, tracker, domain):
+       # get the most likely intent
+       last_intent_name = tracker.latest_message['intent']['name']
+       print(str(tracker.__dict__))
+
+
+       # get the prompt for the intent
+       intent_prompt = ""
+       #self.intent_mappings[last_intent_name]
+
+       # Create the affirmation message and add two buttons to it.
+       # Use '/<intent_name>' as payload to directly trigger '<intent_name>'
+       # when the button is clicked.
+       #message = "Did you mean '{}'?".format(intent_prompt)
+       #buttons = [{'title': 'Yes',
+       #            'payload': '/{}'.format(last_intent_name)},
+       #           {'title': 'No',
+       #            'payload': '/out_of_scope'}]
+       #dispatcher.utter_button_message(message, buttons=buttons)
+       print(tracker.latest_message)
+       dispatcher.utter_message("Not trained for this .")
+
+       return []
+
+
+
+class ActionFallbackAction(Action):
+    def name(self):
+           return "fallback_action"
+
+    def run(self, dispatcher, tracker, domain):
+       # get the most likely intent
+       latest = tracker.latest_message
+
+       #print(str(tracker.__dict__))
+       # get the prompt for the intent
+       intent_prompt = ""
+       #self.intent_mappings[last_intent_name]
+       # Create the affirmation message and add two buttons to it.
+       # Use '/<intent_name>' as payload to directly trigger '<intent_name>'
+       # when the button is clicked.
+       #message = "Did you mean '{}'?".format(intent_prompt)
+       #buttons = [{'title': 'Yes',
+       #            'payload': '/{}'.format(last_intent_name)},
+       #           {'title': 'No',
+       #            'payload': '/out_of_scope'}]
+       #dispatcher.utter_button_message(message, buttons=buttons)
+       msg="Sorry , I am not yet trained for this , please enter valid question."
+       dispatcher.utter_message(msg)
+       try:
+           from googlesearch import search
+       except ImportError:
+           print("No module named 'google' found")
+
+       # to search
+       query = latest["text"]
+       link="";
+       for j in search(query, tld="co.in", num=10, stop=1, pause=2):
+           link = "<a href="+j+" target=\"_blank\">Here</a> is the result form google ."
+           dispatcher.utter_message(link)
+
+       print(latest)
+
+       return []

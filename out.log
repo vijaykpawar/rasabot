@@ -1,0 +1,38 @@
+2019-09-16 20:03:57,700 [INFO ]  Starting Rasa server on http://localhost:5005
+2019-09-16 20:04:21,063 [INFO ]  Added 'SpacyNLP' to component cache. Key 'SpacyNLP-en'.
+2019-09-16 20:05:25,964 [INFO ]  Starting Rasa server on http://localhost:5005
+2019-09-16 20:05:48,174 [INFO ]  Added 'SpacyNLP' to component cache. Key 'SpacyNLP-en'.
+2019-09-16 20:08:15,750 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None
+2019-09-16 20:16:19,893 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None
+2019-09-16 20:24:15,267 [ERROR]  Exception occurred while handling uri: 'http://localhost:5005/conversations/1/messages'
+Traceback (most recent call last):
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\sanic\request.py", line 149, in load_json
+    self.parsed_json = loads(self.body)
+  File "C:\Users\vijay\AppData\Local\Programs\Python\Python37\lib\json\__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\vijay\AppData\Local\Programs\Python\Python37\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\vijay\AppData\Local\Programs\Python\Python37\lib\json\decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 6 column 3 (char 70)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\sanic\app.py", line 917, in handle_request
+    response = await response
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\rasa\server.py", line 154, in decorated
+    result = await result
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\rasa\server.py", line 596, in add_message
+    request_params = request.json
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\sanic\request.py", line 143, in json
+    self.load_json()
+  File "c:\users\vijay\pycharmprojects\rasabot\venv\lib\site-packages\sanic\request.py", line 153, in load_json
+    raise InvalidUsage("Failed when parsing body as json")
+sanic.exceptions.InvalidUsage: Failed when parsing body as json
+2019-09-16 20:30:59,300 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None
+2019-09-16 20:32:22,912 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None

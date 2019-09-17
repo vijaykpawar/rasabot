@@ -15,29 +15,41 @@ intents:
 - autofill_a2_form
 - draft_save_a2
 - investment_banking
-
+- out_of_scope
+- ask_pan
+- ask_ad_code
 entities:
 - currency
+- a2form
+- purpose_code
+- gen_ins
+- trend
+- remi_form
+- ad_code
 templates:
   utter_greet:
-  - text: 'Hey! How Could I assist you ?'
+  - text: Hey! How Could I assist you ?
   utter_cheer_up:
   - text: 'Here is something to cheer you up:'
-    image: 'https://i.imgur.com/nGF1K8f.jpg'
+    image: https://i.imgur.com/nGF1K8f.jpg
   utter_did_that_help:
-  - text: 'Did that help you?'
+  - text: Did that help you?
   utter_happy:
-  - text: 'Great carry on!'
+  - text: Great carry on!
   utter_goodbye:
-  - text: 'Bye'
+  - text: Bye
   utter_ask_currency:
-  - text: 'Please enter quote currency'
+  - text: Please enter quote currency
   utter_remittance_form:
-  - text: 'You need to fill form A2 (Application for Remittance abroad)'
+  - text: You need to fill form A2 (Application for Remittance abroad)
   utter_purpose:
-  - text: 'What is the purpose of the transaction?'
-  utter_tera_fallback_action:
-  - text: "Sorry , I am not yet trained for this , please enter valid question"
+  - text: What is the purpose of the transaction?
+  utter_out_of_scope:
+  - text: Sorry , I am not yet trained for this , please enter valid question
+  utter_ask_pan:
+  - text: PAN / Permanent Account Number is an unique identification number assigned to all taxpayers in India.
+  utter_ask_ad_code:
+  - text: AD Code is an Authorised Dealer Code provided by those banks in which your company has current account.
 
 actions:
 - utter_greet
@@ -52,8 +64,12 @@ actions:
 - save_trends
 - utter_purpose
 - code_action
-- utter_tera_fallback_action
+- action_default_ask_affirmation
 - send_form_a2
 - send_form_a2_data
 - save_form_a2
+- utter_out_of_scope
 - code_investment_banking
+- fallback_action
+- utter_ask_pan
+- utter_ask_ad_code
